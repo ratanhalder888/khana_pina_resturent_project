@@ -25,67 +25,26 @@ Home
 {% block maincontent %}
 <!-- Popular Dish Section -->
 <section class="bg-gradient-to-t from-orange-100 via-orange-50 to-white">
-    <div class="container mx-auto px-24 py-16">
+    <div class="container mx-auto px-6 py-16">
         <h2 class="test-3xl font-bold text-center text-gray-800 mb-10">Popular Disher</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Dish 1 -->
-             <div class="bg-gradient-to-b from-orange-100 via-orange-50 to-white shadow-md
-             p-6 hover:shadow-xl transition-shadow duration-300">
-             <img src="{% static 'core/images/paneer_butter_masala.png' %}" alt="Paneer Butter Masala" class="w-full h-48 object-cover">
-             <h3 class="text-2xl font-semibold text-gray-800 mt-4">Paneer Butter Masala</h3>
-             <p class="text-gray-600 mt-2">Creamy and rich, with a delightful blend of spices, perfect with naan or rice.</p>
-             <a href="#" class="inline-block bg-orange-500 text-white mt-4 px-  py-2 rounded-full hover:bg-orange-600">Order Now</a>   
-             </div>
-            <!-- Dish 2 -->
-              <div class="bg-gradient-to-b from-orange-100 via-orange-50 to-white shadow-md
-             p-6 hover:shadow-xl transition-shadow duration-300">
-             <img src="{% static 'core/images/sushi.png' %}" alt="sushi" class="w-full h-48 object-cover">
-             <h3 class="text-2xl font-semibold text-gray-800 mt-4">Sushi</h3>
-             <p class="text-gray-600 mt-2">Sushi is a Japanese dish featuring seasoned rice, often combined with seafood
-                (raw or cooked), vegetables, and sometimes wrapped in seaweed.</p>
-             <a href="#" class="inline-block bg-orange-500 text-white mt-4 px-  py-2 rounded-full hover:bg-orange-600">Order Now</a>   
-             </div>
-            <!-- Dish 3 -->
-             <div class="bg-gradient-to-b from-orange-100 via-orange-50 to-white shadow-md
-             p-6 hover:shadow-xl transition-shadow duration-300">
-             <img src="{% static 'core/images/paneer.png' %}" alt="sushi" class="w-full h-48 object-cover">
-             <h3 class="text-2xl font-semibold text-gray-800 mt-4">Butter Paneer</h3>
-             <p class="text-gray-600 mt-2">creamy North Indian curry featuring soft paneer cheese in a tomato-based sauce with butter and
-                spices.</p>
-             <a href="#" class="inline-block bg-orange-500 text-white mt-4 px-  py-2 rounded-full hover:bg-orange-600">Order Now</a>   
-             </div>
-
-             
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {% for dish in dishes %}
+            <div class="bg-gradient-to-b from-orange-100 via-orange-50 to-white shadow-md
+                    p-6 hover:shadow-xl transition-shadow duration-300">
+                <img src="{% static dish.image %}" alt="{{ dish.name }}" class="w-full h-48 object-cover">
+                <h3 class="text-2xl font-semibold text-gray-800 mt-4">{{ dish.name }}</h3>
+                <p class="text-gray-600 mt-2">{{ dish.description }}</p>
+                <a href="#"
+                    class="inline-block bg-orange-500 text-white mt-4 px-6 py-2 rounded-full hover:bg-orange-600">
+                    OrderNow
+                </a>
+            </div>
+            {% endfor %}
         </div>
-        </div>
-        {% comment %}
-         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Dish 2 -->
-             <div class="bg-gradient-to-b from-orange-100 via-orange-50 to-white shadow-md
-             p-6 hover:shadow-xl transition-shadow duration-300">
-             <img src="{% static 'core/images/sushi.png' %}" alt="sushi" class="w-full h-48 object-cover">
-             <h3 class="text-2xl font-semibold text-gray-800 mt-4">Sushi</h3>
-             <p class="text-gray-600 mt-2">Sushi is a Japanese dish featuring seasoned rice, often combined with seafood
-                (raw or cooked), vegetables, and sometimes wrapped in seaweed.</p>
-             <a href="#" class="inline-block bg-orange-500 text-white mt-4 px-  py-2 rounded-full hover:bg-orange-600">Order Now</a>   
-             </div>
-        </div>
-         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Dish 3 -->
-             <div class="bg-gradient-to-b from-orange-100 via-orange-50 to-white shadow-md
-             p-6 hover:shadow-xl transition-shadow duration-300">
-             <img src="{% static 'core/images/paneer.png' %}" alt="sushi" class="w-full h-48 object-cover">
-             <h3 class="text-2xl font-semibold text-gray-800 mt-4">Butter Paneer</h3>
-             <p class="text-gray-600 mt-2">creamy North Indian curry featuring soft paneer cheese in a tomato-based sauce with butter and
-                spices.</p>
-             <a href="#" class="inline-block bg-orange-500 text-white mt-4 px-  py-2 rounded-full hover:bg-orange-600">Order Now</a>   
-             </div>
-        </div>  
-        {% endcomment %}
     </div>
 </section>
 
- <!-- About Us Section -->
+<!-- About Us Section -->
 <section class="bg-gradient-to-b from-orange-100 via-orange-50 to-white">
     <div class="container mx-auto px-6 py-16">
         <div class="text-center">
@@ -98,18 +57,21 @@ Home
             <img src="{% static 'core/images/fastfood.png' %}" alt="Healthy Sushi" class="w-1/2">
         </div>
     </div>
-</section> 
+</section>
 
 <!-- Chef Note -->
- <section class="bg-white py-10 px-6">
+<section class="bg-white py-10 px-6">
     <div class="max-w-4xl mx-auto bg-orange-50 p-6 rounded-lg shadow-lg">
-        <p class="text-gray-800 text-xl font-light italic" >
+        <p class="text-gray-800 text-xl font-light italic">
             Dear Guest,<br><br>
-            Our Passion is to serve you a meal that not only delights your taste buds but also warms your heart. Each dish is crafted with the
-            freshest ingredients and a touch of love, ensuring an unforgettable dining experience. Let us take you on a culinary journey that 
+            Our Passion is to serve you a meal that not only delights your taste buds but also warms your heart. Each
+            dish is crafted with the
+            freshest ingredients and a touch of love, ensuring an unforgettable dining experience. Let us take you on a
+            culinary journey that
             you'll savor long after the last bite. We hope you enjoy every moment!<br><br>
-            <span class="text-orange-500 font-medium" style="font-family:  'Dancing Script', cursive;">Chef, Sonam</span>
+            <span class="text-orange-500 font-medium" style="font-family:  'Dancing Script', cursive;">Chef,
+                Sonam</span>
         </p>
     </div>
- </section>
+</section>
 {% endblock maincontent %}
