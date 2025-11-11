@@ -4,6 +4,63 @@
 
 {% block maincontent %}
 <div class="min-h-screen flex items-center justify-center bg-orange-50 p-6">
+  <!-- Update the form action to point to the URL named 'reservation_page' -->
+  <form method="POST" action="{% url 'reservation' %}" class="w-full max-w-md bg-orange-80 rounded-2xl shadow-lg p-8 space-y-6">
+    <!-- CRITICAL SECURITY STEP: Add the CSRF token -->
+    {% csrf_token %}
+
+    <h2 class="text-2xl font-bold text-orange-600 text-center">Reserve Your Table</h2>
+    
+    <!-- Optional: Display success messages -->
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Ensure 'name' attributes match the keys used in views.py -->
+
+    <div>
+      <label class="block text-orange-700 mb-1" for="name">Name</label>
+      <input name="name" class="w-full px-4 py-2 rounded-lg border border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500" type="text" id="name" placeholder="Your Name" required>
+    </div>
+
+    <div>
+      <label class="block text-orange-700 mb-1" for="date">Date</label>
+      <input name="date" class="w-full px-4 py-2 rounded-lg border border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500" type="date" id="date" required>
+    </div>
+
+    <div>
+      <label class="block text-orange-700 mb-1" for="time">Time</label>
+      <input name="time" class="w-full px-4 py-2 rounded-lg border border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500" type="time" id="time" required>
+    </div>
+
+    <div>
+      <label class="block text-orange-700 mb-1" for="guest_number">Guest Number</label>
+      <input name="guest_number" class="w-full px-4 py-2 rounded-lg border border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500" type="number" id="guest_number" min="1" placeholder="Number of Guests" required>
+    </div>
+
+    <div>
+      <label class="block text-orange-700 mb-1" for="mobile">Mobile</label>
+      <input name="mobile" class="w-full px-4 py-2 rounded-lg border border-orange-300 focus:outline-none focus:ring-2 focus:ring-orange-500" type="tel" id="mobile" placeholder="Mobile Number" required>
+    </div>
+
+    <button type="submit" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300">
+      Book Reservation
+    </button>
+  </form>
+</div>
+{% endblock maincontent %}
+
+
+{% comment %} {% extends "core/base.html" %}
+{% load static %}
+{% block title %}Reservation{% endblock title %}
+
+{% block maincontent %}
+<div class="min-h-screen flex items-center justify-center bg-orange-50 p-6">
   <form class="w-full max-w-md bg-orange-80 rounded-2xl shadow-lg p-8 space-y-6">
     <h2 class="text-2xl font-bold text-orange-600 text-center">Reserve Your Table</h2>
 
@@ -37,4 +94,4 @@
     </button>
   </form>
 </div>
-{% endblock maincontent %}
+{% endblock maincontent %} {% endcomment %}

@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import Reservation
 
 # Create your views here.
 def home(req):
@@ -39,8 +41,33 @@ def menu(req):
 def tracking(req):
     return render(req, 'core/tracking.html')
 
-def reservation(req):
-    return render(req, 'core/reservation.html')
+def reservation(request):
+    if request.method == 'POST':
+        # Retrieve data from the POST request
+        name = request.POST.get('name')
+        date = request.POST.get('date')
+        time = request.POST.get('time')
+        guest_number = request.POST.get('guest_number')
+        mobile = request.POST.get('mobile')
+        created_at = request.POST.get('created_at')
+
+        # Create a new Reservation object and save it to the database
+        Reservation.objects.create(
+            name = name,
+            date = date,
+            time = time,
+            guest_number = guest_number,
+            mobile = mobile,
+            created_at = created_at,
+        )
+
+        # Add a success message (optional)
+        messages.success(request, 'Your table has been reserved successfully! ' \
+                                    'We look forward to seeing you.')
+        
+        # Redirect to avoid form resubmission issues
+        return redirect('reservation')
+    return render(request, 'core/reservation.html')
 
 def contact(req):
     return render(req, 'core/contact.html')
