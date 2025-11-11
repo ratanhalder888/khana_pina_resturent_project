@@ -1,4 +1,4 @@
-#!/home/ratan/khana_pina/venv/bin/python3.12
+#!/home/ratan/Desktop/khana_pina_resturent_project/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
