@@ -38,9 +38,9 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['khana-pina-image-latest.onrender.com']
+ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['https://khana-pina-image-latest.onrender.com/']
+# CSRF_TRUSTED_ORIGINS = ['']
 
 
 
@@ -91,17 +91,17 @@ WSGI_APPLICATION = 'khana_pina.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-'''
+
 
 # Production Database (PostgresSQL)
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -113,7 +113,7 @@ DATABASES = {
 
     }
 }
-
+'''
 
 
 # Password validation
