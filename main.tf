@@ -66,9 +66,9 @@ resource "render_postgres" "Database1" {
     name = "ProductionDatabase1"
     plan = "free"       
     region = "oregon"      
-    version = "16"
+    version = "18"
 
-    database_name = "var.DATABASE_NAME
+    database_name = var.DATABASE_NAME
     database_user = var.DATABASE_USER
 
     high_availability_enabled = false  # Disabled high availability for simplicity

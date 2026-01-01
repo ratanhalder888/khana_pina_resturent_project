@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 class Reservation(models.Model):
     name = models.CharField(max_length=100)
@@ -13,4 +14,4 @@ class Reservation(models.Model):
         return f"{self.name} - {self.date} at {self.time}"
 
     class Meta:
-        ordering = ['-date', '-time']
+        ordering = ["-date", "-time"]
