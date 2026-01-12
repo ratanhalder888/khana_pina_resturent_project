@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 import environ
 import os
+from datetime import timedelta
 
 env = environ.Env(
     # set casting, default value
@@ -35,14 +36,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-<<<<<<< HEAD
-ALLOWED_HOSTS = ['*']
-
-# CSRF_TRUSTED_ORIGINS = ['']
-
-=======
-ALLOWED_HOSTS = ["my-django-app-1o4g.onrender.com"]
->>>>>>> main
+ALLOWED_HOSTS = ["my-django-app-1o4g.onrender.com", "localhost", "127.0.0.1"]
 
 CSRF_TRUSTED_ORIGINS = ["https://my-django-app-1o4g.onrender.com"]
 
@@ -57,6 +51,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "core",
+    "rest_framework",
+    "djoser",
+    "user_accounts",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -93,25 +91,15 @@ WSGI_APPLICATION = "khana_pina.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-<<<<<<< HEAD
-
-=======
-"""
->>>>>>> main
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-<<<<<<< HEAD
 
-
-=======
-"""
->>>>>>> main
 # Production Database (PostgresSQL)
-'''
+"""
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -122,7 +110,7 @@ DATABASES = {
         "PORT": env("DB_PORT"),
     }
 }
-'''
+"""
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -174,3 +162,31 @@ STORAGES = {
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# REST Framework Settings
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ),
+}
+
+# Djoser Settings
+DJOSER = {
+    "SERIALIZERS": {
+        "user": "user_accounts.api.serializers.CustomUserSerializer",
+        "current_user": "user_accounts.api.serializers.CustomUserSerializer",
+    },
+}
+
+# Simple JWT Settings
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=7),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=14),
+    "AUTH_HEADER_TYPES": ("JWT",),
+}
+
+# Login/Logout Settings
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "home"

@@ -45,6 +45,10 @@ def tracking(req):
     return render(req, "core/tracking.html")
 
 
+from django.contrib.auth.decorators import login_required
+
+
+@login_required
 def reservation(request):
     if request.method == "POST":
         # Retrieve data from the POST request
